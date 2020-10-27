@@ -1,0 +1,176 @@
+.login {
+	width: 30%;
+	background: rgb(146, 188, 212);
+	padding: 30px;
+	margin: auto;
+	margin-top: 100px;
+	border-radius: 4px;
+	margin-bottom: 100px;
+}
+
+.login h4 {
+	font-size: 22px;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.controles {
+	width: 100%;
+	padding: 10px;
+	border-radius: 4px;
+	margin-bottom: 16px;
+	border: 1px solid #1f53c5;
+	font-family: "calibri";
+	font-size: 18px;
+}
+
+.login .login__container--recuerdame {
+	height: 40px;
+	line-height: 40px;
+	margin-left: 10px;
+	margin-top: 3px;
+	font-family: "calibri";
+	font-size: 18px;
+}
+
+.login div {
+	display: flex;
+	align-items: center;
+}
+
+.login .login__container--forgot {
+	color: gray;
+	font-size: 10px;
+	text-decoration: none;
+	opacity: 0.5;
+	margin-bottom: 25px;
+}
+
+.login .login__container--forgot:hover {
+	color: black;
+	opacity: 1;
+	text-decoration: underline;
+}
+.login .terminos {
+	font-size: 10px;
+}
+.login .terminos__a {
+	color: gray;
+	font-size: 10px;
+	text-decoration: none;
+	opacity: 0.5;
+}
+
+.login .terminos__a:hover {
+	color: black;
+	opacity: 1;
+	text-decoration: underline;
+}
+
+.boton {
+	width: 100%;
+	background-color: #1f53c5;
+	border: none;
+	border-radius: 10px;
+	padding: 10px;
+	color: white;
+	margin: 16px 0;
+	font-family: "calibri";
+	font-size: 16px;
+}
+
+.login .boton:hover {
+	opacity: 0.7;
+}
+
+#index_contenido {
+	width: 100%;
+	margin: auto;
+	max-width: 1280px;
+	min-height: 100vh;
+}
+
+/*MEDIA QUERY*/
+
+/*TABLET*/
+@media (max-width: 1024px) {
+	header .nav-main {
+		flex-direction: row;
+	}
+
+	.login {
+		width: 60%;
+		height: auto;
+		margin-top: 300px;
+		padding-top: 80px;
+		font-size: 25px;
+	}
+
+	.login div {
+		margin-top: 10px;
+	}
+
+	.login .login__container--forgot {
+		font-size: 20px;
+		padding: 20px 0;
+	}
+
+	.login .login__container--recuerdame {
+		font-size: 25px;
+	}
+
+	.login h4 {
+		font-size: 30px;
+	}
+
+	.boton {
+		font-size: 20px;
+	}
+}
+
+/*SMARTPHONE*/
+
+@media (max-width: 480px) {
+	.menu {
+		display: block;
+	}
+
+	.login {
+		width: 95%;
+		height: 400px;
+		margin-top: 100px;
+		padding-top: 10px;
+		font-size: 25px;
+	}
+
+	.login__registro {
+		width: 95%;
+		height: 600px;
+	}
+
+	.login__registro a {
+		font-size: 10px;
+	}
+
+	.login div {
+		margin-top: 10px;
+		font-size: 10px;
+	}
+
+	.login .login__container--forgot {
+		font-size: 10px;
+		padding: 10px 0;
+	}
+
+	.login .login__container--recuerdame {
+		font-size: 15px;
+	}
+
+	.login h4 {
+		font-size: 19px;
+	}
+
+	.boton {
+		font-size: 15px;
+	}
+}

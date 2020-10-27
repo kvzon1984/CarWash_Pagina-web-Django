@@ -7,3 +7,13 @@ def index(request):
 
 def contacto(request):
     return render(request, 'app/contacto.html')
+
+def galeria(request):
+    return render(request, 'app/galeria.html')
+
+def registro(request):
+    return render(request, 'app/registro.html')
+
+def login(request):
+    return render(request, 'app/login.html')
+
