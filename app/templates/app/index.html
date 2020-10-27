@@ -1,11 +1,161 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Hola mundo</h1>
-</body>
-</html>
+{% extends 'app/base.html' %}
+
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css" />
+{% endblock %}
+
+{% block js %}
+
+{# cargamos el js del del slayder #}
+
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $(".slider").bxSlider(5)
+    })
+</script>
+{% endblock %}
+
+
+{% block contenido %}
+
+<div class="clientes-felices-image">
+    <div class="clientes-felices-text">
+        <h1 style="font-size:50px">LAVADO DE AUTOS MIGUEL TE LO MOJA</h1>
+        <h3>Una experiencia inigualable</h3>
+    </div>
+</div>
+
+<div class="slider">
+    <div>
+        <img src="{% static 'app/img/Slider/banner3.png' %}" alt="" />
+    </div>
+    <div>
+        <img src="{% static 'app/img/Slider/banner2.png' %}" alt="" />
+    </div>
+    <div>
+        <img src="{% static 'app/img/Slider/banner.png' %}" alt="" />
+    </div>
+</div>
+
+<section id="index_contenido">
+    <section class="services">
+        <div class="services__container">
+            <div class="services__container--item">
+                <img src="{% static 'app/img/Services/lavado.jpg' %}" alt="" />
+                <h3>Personaliza tu lavado</h3>
+                <p>
+                    Puedes lavar tu auto como quieras, si quieres encerado lo agregas y si no lo deseas lo quitas, lava el
+                    auto como tu prefieras, ven y escoje lo que deseas.
+                </p>
+                <a href="#" class="btn">Read More <i class="fas fa-angle-double-right"></i></a>
+            </div>
+
+            <div class="services__container--item">
+                <img src="{% static 'app/img/Services/auto-lavado.gif' %}" alt="" />
+                <h3>Lava tu mismo tu auto</h3>
+                <p>
+                    Asi es, si quieres lavar tu auto por que disfrutas hacerlo o te sientes mas comodo, te presentamos este
+                    servicio en el cual nosotros te prestaremos todos los equipos de limpieza y solo se te cobrara el uso de
+                    estos y los insumos que ocupes, ven y prueba.
+                </p>
+                <a href="#" class="btn">Read More <i class="fas fa-angle-double-right"></i></a>
+            </div>
+
+            <div class="services__container--item">
+                <img src="{% static 'app/img/Services/lavado-interior.jpg' %}" alt="" />
+                <h3>Limpieza interior</h3>
+                <p>Solo quieres limpiar el interior del auto y cuidado de pieles, este es tu lugar indicado.</p>
+                <a href="#" class="btn">Read More <i class="fas fa-angle-double-right"></i></a>
+            </div>
+
+            <div class="services__container--item">
+                <img src="{% static 'app/img/Services/moto.jpg' %}" alt="" />
+                <h3>Lavado moto y bicicleta</h3>
+                <p>Asi es nuestro nuevo servicio, quieres lavar tu moto o tu bicicleta este es el luegar que buscas.</p>
+                <a href="#" class="btn">Read More <i class="fas fa-angle-double-right"></i></a>
+            </div>
+        </div>
+    </section>
+</section>
+
+<section id="index_contenido">
+    <div class="clientes-felices-image">
+        <div class="clientes-felices-text">
+            <h1 style="font-size:50px">Nuestros Clientes</h1>
+              <h3>Confian en Nosotros</h3>
+        </div>
+    </div>
+    
+    <section class="clientes_felices">
+        <div class="services__container">
+            <div class="services__container--item">
+                <img src="{% static 'app/img/Clientes Felices/1.jpg' %}" alt="" />
+                
+                <p>
+                    Prestan un exelente servicio, lo recomiendo al 100% , muy respetuosos y el precio es justo.
+                </p>
+                
+            </div>
+
+            <div class="services__container--item">
+                <img src="{% static 'app/img/Clientes Felices/2.jpg' %}" alt="" />
+                
+                <p>
+                    El mejor lavado de autos que he visitado, todos super amables. muy comodas las instalaciones,
+                    un con sala de espera.
+                </p>
+                
+            </div>
+
+            <div class="services__container--item">
+                <img src="{% static 'app/img/Clientes Felices/3.jpg' %}" alt="" />
+                
+                <p>
+                    Recomendable al 1000% los mejores precios, dejaron mi vehiculo impecable, una excelente atención.
+                </p>
+                
+            </div>
+
+            <div class="services__container--item">
+                <img src="{% static 'app/img/Clientes Felices/4.jpg' %}" alt="" />
+                
+                <p>
+                    Exelente atencion, sala de espera con aire acondicionado, sector fumadores, y lugar para comprar insumos.
+                </p>
+                
+            </div>
+        </div>
+    </section>
+</section>
+
+
+
+<section id="bloque1">
+    <div>
+        <div class="mision_vision">
+            <h1>Mision</h1>
+            <p>
+                Nuestra misión es entregar a nuestros clientes el mejor de los servicios de lavado de vehiculos,
+                transmitiendo confianza e integridad a nuestra clientela
+            </p>
+        </div>
+    </div>
+        
+    <div>
+        <div class="mision_vision">
+            <img src="{% static 'app/img/vision.jpg' %}" alt="" />
+            <h1>Vision</h1>
+            <p>
+                La vision es llegar a ser una empresa lider en el mercado a nivel nacional, prestando un servicio unico e
+                inigualable dentro del rubro.
+            </p>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
