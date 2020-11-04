@@ -1,0 +1,43 @@
+{% extends 'app/base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+
+<section id="index_contenido">
+    <section class="login login__registro">
+        <h4>Registro</h4>
+        <form class="login__container--form" id="login_formulario">
+            <input class="controles" type="number" name="rut" id="rut" placeholder="Ingrese Rut" />
+            <input class="controles" type="text" name="nombre" id="nombre" placeholder="Ingrese Nombre" />
+            <input class="controles" type="text" name="apellido" id="apellido" placeholder="Ingrese Apellido" />
+            <input class="controles" type="email" name="email" id="email" placeholder="Ingrese Email" />
+            <input
+                class="controles"
+                type="date"
+                name="fecha_nacimiento"
+                id="fecha_nacimiento"
+                placeholder="Ingrese Fecha Nacimiento"
+            />
+            <input
+                class="controles"
+                type="text"
+                name="nombre_usuario"
+                id="nombre_usuario"
+                placeholder="Ingrese Nombre Usuario"
+            />
+            <input class="controles" type="password" name="password" id="password" placeholder="Ingrese Contraseña" />
+        </form>
+        <div>
+            <label class="terminos" for="">
+                <input type="checkbox" name="terminos" id="terminos" /> Estoy de acuerdo con
+                <a class="terminos__a" href="#"> Terminos y Condiciones</a>
+            </label>
+        </div>
+
+        <input class="boton" type="submit" value="Registrar" />
+        <p><a href="login.html">¿Ya tengo cuenta?</a></p>
+    </section>
+</section>
+
+{% endblock %}
