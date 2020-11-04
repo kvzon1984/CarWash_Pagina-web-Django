@@ -91,7 +91,9 @@
         {% block js %}
         {% endblock %}
 		
-		<script src="../js/menu.js"></script>
-		<script src="../js/feriados.js"></script>
+
+		{# Falta agregar js en la carpeta app para que funciones el los js #}
+		<script src="{% static 'app/js/menu.js' %}"></script>
+		<script src="{% static 'app/js/feriados.js' %}"></script>
 	</body>
 </html>
