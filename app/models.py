@@ -11,4 +11,29 @@ class Services(models.Model):
     def __str__(self):
         return self.name
 
+class Insumo (models.Model):
 
+    name = models.CharField(max_length= 120)
+    price = models.IntegerField()
+    Image = models.ImageField(upload_to="insumos", null=True)
+    Description =models.TextField()
+    Stock = models.IntegerField()
+
+    def __str__(self):
+        return self.name
+
+
+class Slider(models.Model):
+    number = models.IntegerField() 
+    image = models.ImageField(upload_to="sliders", null=True)
+
+    def __str__(self):
+        return self.number
+
+
+class Gallery(models.Model):
+    number = models.IntegerField() 
+    image = models.ImageField(upload_to="gallery", null=True)
+
+    def __str__(self):
+        return self.number
