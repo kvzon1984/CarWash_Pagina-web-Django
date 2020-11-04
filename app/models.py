@@ -24,16 +24,15 @@ class Insumo (models.Model):
 
 
 class Slider(models.Model):
-    number = models.IntegerField() 
+    name = models.IntegerField() 
     image = models.ImageField(upload_to="sliders", null=True)
 
-    def __str__(self):
-        return self.number
-
+    def __init__(self):
+        return self.name
 
 class Gallery(models.Model):
-    number = models.IntegerField() 
+    name = models.IntegerField() 
     image = models.ImageField(upload_to="gallery", null=True)
 
-    def __str__(self):
-        return self.number
+    def __init__(self):
+        return self.name

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Slider ,Gallery
+from .models import Slider, Gallery
 
 # Create your views here.
 
@@ -8,7 +8,7 @@ def index(request):
     data = {
         'slider': slider
     }
-    return render(request, 'app/index.html')
+    return render(request, 'app/index.html', data)
 
 def contacto(request):
     return render(request, 'app/contacto.html')
@@ -19,7 +19,7 @@ def galeria(request):
         'gallery': gallery
     }
 
-    return render(request, 'app/galeria.html')
+    return render(request, 'app/galeria.html', data)
 
 def registro(request):
     return render(request, 'app/registro.html')
