@@ -11,4 +11,13 @@ class Services(models.Model):
     def __str__(self):
         return self.name
 
+class Insumo (models.Model):
 
+    name = models.CharField(max_length= 120)
+    price = models.IntegerField()
+    Image = models.ImageField(upload_to="insumos", null=True)
+    Description =models.TextField()
+    Stock = models.IntegerField()
+
+    def __str__(self):
+        return self.name
