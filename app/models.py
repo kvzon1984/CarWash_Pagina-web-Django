@@ -21,3 +21,19 @@ class Insumo (models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Slider(models.Model):
+    number = models.IntegerField() 
+    image = models.ImageField(upload_to="sliders", null=True)
+
+    def __str__(self):
+        return self.number
+
+
+class Gallery(models.Model):
+    number = models.IntegerField() 
+    image = models.ImageField(upload_to="gallery", null=True)
+
+    def __str__(self):
+        return self.number
