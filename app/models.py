@@ -11,7 +11,14 @@ class Services(models.Model):
     def __str__(self):
         return self.name
 
+<<<<<<< HEAD
+#python .\manage.py makemigrations
+
+
+
+=======
 class Insumo (models.Model):
+>>>>>>> 7a41d43ae65f9255b615a093fb968a560a2c6012
 
     name = models.CharField(max_length= 120)
     price = models.IntegerField()
@@ -24,6 +31,7 @@ class Insumo (models.Model):
 
 
 class Slider(models.Model):
+<<<<<<< HEAD
     name = models.IntegerField() 
     image = models.ImageField(upload_to="sliders", null=True)
 
@@ -35,4 +43,18 @@ class Gallery(models.Model):
     image = models.ImageField(upload_to="gallery", null=True)
 
     def __init__(self):
+=======
+    name = models.CharField(max_length=50)
+    image = models.ImageField(upload_to="sliders", null=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Gallery(models.Model):
+    name = models.CharField(max_length=50)
+    image = models.ImageField(upload_to="gallery", null=True)
+
+    def __str__(self):
+>>>>>>> b63764345592fb212ac82a954a05ce249fe0792f
         return self.name
