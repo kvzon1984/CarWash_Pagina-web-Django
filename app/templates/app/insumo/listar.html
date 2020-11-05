@@ -40,20 +40,24 @@
                         <th>Options</th>
                     </tr>
                 
-                    {% for i in insumos%}
+                    {% for i in entity%}
                     
                     <tr>
                         <td>{{ i.name | title }}</td>
                         <td>{{ i.price | intcomma }}</td>
                         <td>{{ i.Stock }}</td>
                         <td>
-                            <a href="{% url 'modificar_insumos' i.id %}" class="btn!important btn-info btn-sm">Modificar</a>
-                            <a href="#" onclick="eliminarInsumo({{i.id}})" class="btn!important  btn-danger btn-sm">Eliminar</a>
+                            <a href="{% url 'modificar_insumos' i.id %}" class="btn!important btn-outline-info btn-sm">Modificar</a>
+                            <a href="#" onclick="eliminarInsumo({{i.id}})" class="btn!important  btn-outline-danger btn-sm">Eliminar</a>
                         </td>
                         
                     </tr>
                     {% endfor %}
                 </table>
+                <hr>
+                <div>
+                    {% include 'app/paginator.html' %}
+                </div>
     
 
             </div>

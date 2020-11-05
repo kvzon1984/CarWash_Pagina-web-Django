@@ -18,12 +18,14 @@
                     {% csrf_token %}
                     {{ form | crispy}}
 
-                    <div class="d-flex justify-content-center">
-                        <input type="reset" value="Cancel" class="btn btn-secondary">
-                        <input type="submit" value="Save" class="btn btn-primary">
+                    <div class="d-flex justify-content-end">
+                        <input type="reset" value="Cancel" class="btn!important btn-outline-secondary btn-lg">
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        <input type="submit" value="Save" class="btn!important btn-outline-success btn-lg">
                     </div>
                 </form>
-                {{mensaje}}
             </div>
         </div>
         
