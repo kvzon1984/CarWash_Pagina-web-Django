@@ -10,52 +10,30 @@
 {% endblock %}
 
 {% block contenido%}
-<section  id="index_contenido">
+
+{% load crispy_forms_tags %}
+<section  id="index_contenido" >
     <div class="contenido__cotacto">
-        <div class="contacto">
-            <form class="contacto__form" action="" id= "formulario_contacto">
-                <h2>Contacto</h2>
 
-                <div class="contacto__group">
-                    <label for="">Tipo de Solicitud</label>
-                    <select class="contacto__group--input" name="tipo_solicitud" id="tipo_solicitud">
-                        <option value="">Seleccionar opcion</option>
-                        <option value="consulta">Consulta</option>
-                        <option value="reclamo">Reclamo</option>
-                        <option value="felicitaciones">Felicitaciones</option>
-                        <option value="sugerencia">Sugerencias</option>
-                    </select>
-                </div>
+        <div class="card" style="background-color: rgb(146, 188, 212)">
+            <div class="card-body">
+                <form class="" action="" method="POST">
+                    <h2 class="card-title text-center">Contact</h2>
+    
+                    {% csrf_token %}
+    
+                    {{form | crispy}}
 
-                <div class="contacto__group">
-                    <input class="contacto__group--input" type="text" name="nombre" id="nombre" placeholder="Nombre" />
-                </div>
-
-                <div class="contacto__group">
-                    <input class="contacto__group--input" type="text" name="apellidos" id="apellidos" placeholder="Apellidos" />
-                </div>
-
-                <div class="contacto__group">
-                    <input class="contacto__group--input" type="email" name="email" id="email" placeholder="Email" />
-                </div>
-
-                <div class="contacto__group">
-                    <label for="">Descripcion</label>
-                    <textarea
-                        required
-                        maxlength="300"
-                        class="contacto__group--input textarea"
-                        placeholder="Explique el detalle del contacto"
-                        cols="30"
-                        rows="10"
-                        name="descripcion"
-                        id="descripcion"
-                    ></textarea>
-                </div>
-
-                <button  class="boton" type="submit">Enviar</button>
-            </form>
+                    <div class="d-flex justify-content-center">
+                        <input type="reset" value="Cancel" class="btn btn-secondary">
+                        &nbsp;
+                        <button  class="btn btn-primary" type="submit">Send</button>
+                    </div>
+                </form>
+                
+            </div>
         </div>
+        
         <div class="maps" id="map"></div>
         <div class="contacto__informacion">
             <div class="contacto__informacion--detalles">

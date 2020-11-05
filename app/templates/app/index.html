@@ -30,15 +30,12 @@
 </div>
 
 <div class="slider">
+
+    {%for g in slider %}
     <div>
-        <img src="{% static 'app/img/Slider/banner3.png' %}" alt="" />
+        <img src="{{g.image.url}}" alt="" />
     </div>
-    <div>
-        <img src="{% static 'app/img/Slider/banner2.png' %}" alt="" />
-    </div>
-    <div>
-        <img src="{% static 'app/img/Slider/banner.png' %}" alt="" />
-    </div>
+    {% endfor %}
 </div>
 
 <section id="index_contenido">
@@ -138,10 +135,11 @@
     <div>
         <div class="mision_vision">
             <h1>Mision</h1>
+            {% for m in mision %}
             <p>
-                Nuestra misión es entregar a nuestros clientes el mejor de los servicios de lavado de vehiculos,
-                transmitiendo confianza e integridad a nuestra clientela
+                {{ m.description}}
             </p>
+            {% endfor %}
         </div>
     </div>
         
@@ -149,10 +147,12 @@
         <div class="mision_vision">
             <img src="{% static 'app/img/vision.jpg' %}" alt="" />
             <h1>Vision</h1>
+
+            {% for v in vision%}
             <p>
-                La vision es llegar a ser una empresa lider en el mercado a nivel nacional, prestando un servicio unico e
-                inigualable dentro del rubro.
+                {{ v.description}}
             </p>
+            {% endfor %}
         </div>
     </div>
 </section>
