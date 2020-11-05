@@ -1,0 +1,51 @@
+{% extends 'app/base.html' %}
+
+{% block contenido %}
+
+{% load humanize %}
+{% load crispy_forms_tags %}
+
+<div class="row">
+    <div class="col-12 col-md-6 offset-md-3">
+        
+        <div class="card text-center">
+            <div class="card-body">
+                <h2>Lista de Insumos</h2>
+                <table class="table table-striped table-hover table-responsive-sm">
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Options</th>
+                    </tr>
+                
+                    {% for i in insumos%}
+                    
+                    <tr>
+                        <td>{{ i.name | title }}</td>
+                        <td>{{ i.price | intcomma }}</td>
+                        <td>{{ i.Stock }}</td>
+                        <td>
+                            <a href="{% url 'modificar_insumos' i.id %}" class="btn!important btn-info btn-sm">Modificar</a>
+                            <a href="{% url 'eliminar_insumos' i.id %}" class="btn!important  btn-danger btn-sm">Eliminar</a>
+                        </td>
+                        
+                    </tr>
+                
+                    {% endfor %}
+                </table>
+    
+
+            </div>
+        </div>
+
+        <br>
+                <br>
+                <br>
+
+    </div>
+</div>
+
+
+
+{% endblock %}
