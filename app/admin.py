@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Services, Insumo, Slider, Gallery, Mision , Vision, Contacto
+from .models import Services, Insumo, Slider, Gallery, Mision , Vision, Contacto, User
 
 # Register your models here.
 #solo se pueden editar casillas que no sean el nombre principal
@@ -55,6 +55,12 @@ class ContactoAdmin(admin.ModelAdmin):
     list_filter =  ["query_type"]
     list_per_page = 10
 
+class UserAdmin(admin.ModelAdmin):
+    list_display = ["username", "last_name",  "email"]
+    list_editable = [ "last_name",  "email"]
+    search_fields = ["username", ] 
+    list_per_page = 10
+
 
 
 
@@ -65,3 +71,4 @@ admin.site.register(Slider, SliderAdmin)
 admin.site.register(Mision, MisionAdmin)
 admin.site.register(Vision, VisionAdmin)
 admin.site.register(Contacto,ContactoAdmin)
+admin.site.register(User, UserAdmin)

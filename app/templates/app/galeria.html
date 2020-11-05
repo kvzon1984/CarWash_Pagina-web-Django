@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block css%}
+{% block css %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"/>
 {% endblock %}
 
@@ -10,16 +10,35 @@
 <div id="galeria">
     <h2>Galeria</h2>
     <br />
+
+
+    
+    <div class="galeria">
+        {% for i in gallery %}
+        {% if gallery %}
+        <a data-fancybox="gallery" href="{{ i.image.url }}">
+            <img src="{{ i.image.url }}" />
+        </a>
+        {% endif %}
+
+        {% endfor %}
+
     
     <div class="galeria">
         {% for i in gallery %}
         <a data-fancybox="gallery" href="{{i.image.url}}">
             <img src="{{i.image.url}}" />
         </a>
+
         {% endfor %}
     </div>
     
 </div>
 
+<<<<<<< HEAD
+=======
+    
+
+>>>>>>> 48b193230a3a3c1af2e30dff44d8b10c8ce64f94
 {% endblock %}
 

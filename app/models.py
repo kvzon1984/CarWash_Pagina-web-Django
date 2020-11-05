@@ -77,5 +77,16 @@ class Contacto(models.Model):
     def __str__ (self):
         return self.name
 
+class User(models.Model):
+    username = models.CharField(max_length=50)
+    frist_name = models.CharField(max_length=15)
+    last_name = models.CharField(max_length=15)
+    email = models.EmailField()
+    password1 = models.CharField(max_length=15)
+    password2 = models.CharField(max_length=15)
+
+    def __str__ (self):
+        return self.username
+
 
 
