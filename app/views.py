@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from .models import Slider, Gallery, Mision, Vision
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Slider, Gallery, Mision, Vision, Insumo
 from .forms import ContactoForm, InsumoForm
 
 # Create your views here.
@@ -60,3 +60,37 @@ def agregar_insumo(request):
             data["form"] = formulario
 
     return render(request,'app/insumo/agregar.html',data)
+
+def listar_insumos(request):
+
+    insumos = Insumo.objects.all()
+    data = {
+        'insumos' : insumos
+    }
+
+    return render(request, 'app/insumo/listar.html' , data)
+
+
+def modificar_insumos(request, id):
+
+    insumo = get_object_or_404(Insumo, id=id)
+
+    data = {
+        'form': InsumoForm(instance=insumo)
+    }
+
+    if request.method == 'POST':
+        formulario = InsumoForm(data=request.POST, instance=insumo, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(to="listar_insumos")
+
+            data["form"] = formulario
+             
+
+    return render(request, 'app/insumo/modificar.html',data)
+
+def eliminar_insumos(request, id):
+    insumo = get_object_or_404(Insumo, id=id)
+    insumo.delete()
+    return redirect(to="listar_insumos")
