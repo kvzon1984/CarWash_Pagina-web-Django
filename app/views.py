@@ -1,13 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Slider, Gallery, Mision, Vision, Insumo, User
+from .models import Slider, Gallery, Mision, Vision, Insumo
 from .forms import ContactoForm, InsumoForm, CustomUserCreationForm
 from django.contrib import messages
 from django.core.paginator import Paginator
-<<<<<<< HEAD
 from django.http import Http404
-=======
 from django.contrib.auth import authenticate, login
->>>>>>> 48b193230a3a3c1af2e30dff44d8b10c8ce64f94
+from django.contrib.auth.decorators import login_required, permission_required
 
 # Create your views here.
 
@@ -38,6 +36,7 @@ def contacto(request):
 
     return render(request, 'app/contacto.html',data)
 
+
 def galeria(request):
     gallery = Gallery.objects.all()
     data = {
@@ -45,6 +44,7 @@ def galeria(request):
     }
 
     return render(request, 'app/galeria.html', data)
+
 
 def registro(request):
 
@@ -54,7 +54,8 @@ def registro(request):
     
     if request.method == 'POST':
         formulario = CustomUserCreationForm(data=request.POST)
-        if formurario.is_valid():
+
+        if formulario.is_valid():
             formulario.save()
             user = authenticate(username=formulario.cleaned_data["username"], password=formulario.cleaned_data["password1"])
             login(request, user)
@@ -64,7 +65,8 @@ def registro(request):
 
     return render(request, 'registration/registro.html', data)
 
-    
+
+@permission_required('app.add_insumo')    
 def agregar_insumo(request):
 
 
@@ -82,14 +84,14 @@ def agregar_insumo(request):
     return render(request,'app/insumo/agregar.html',data)
 
 
-
+@permission_required('app.view_insumo') 
 def listar_insumos(request):
 
     insumos = Insumo.objects.all()
     page = request.GET.get('page',1)
 
     try:
-        paginator = Paginator(insumos,5)
+        paginator = Paginator(insumos,10)
         insumos = paginator.page(page)
     except:
         raise Http404
@@ -103,6 +105,7 @@ def listar_insumos(request):
     return render(request, 'app/insumo/listar.html' , data)
 
 
+@permission_required('app.change_insumo') 
 def modificar_insumos(request, id):
 
     insumo = get_object_or_404(Insumo, id=id)
@@ -123,6 +126,8 @@ def modificar_insumos(request, id):
 
     return render(request, 'app/insumo/modificar.html',data)
 
+
+@permission_required('app.delete_insumo') 
 def eliminar_insumos(request, id):
     insumo = get_object_or_404(Insumo, id=id)
     insumo.delete()

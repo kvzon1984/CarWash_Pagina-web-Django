@@ -32,23 +32,28 @@
         <div class="card text-center">
             <div class="card-body">
                 <h2>Lista de Insumos</h2>
-                <table class="table table-striped table-hover table-responsive-sm">
+                <table class="table table-striped table-hover table-responsive-sm" style="background-color: #e9ecef">
                     <tr>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Stock</th>
-                        <th>Options</th>
+                        <th style="border: 2px solid black">Name</th>
+                        <th style="border: 2px solid black">Price</th>
+                        <th style="border: 2px solid black">Stock</th>
+                        <th style="border: 2px solid black">Options</th>
                     </tr>
                 
                     {% for i in entity%}
                     
                     <tr>
-                        <td>{{ i.name | title }}</td>
-                        <td>{{ i.price | intcomma }}</td>
-                        <td>{{ i.Stock }}</td>
-                        <td>
-                            <a href="{% url 'modificar_insumos' i.id %}" class="btn!important btn-outline-info btn-sm">Modificar</a>
-                            <a href="#" onclick="eliminarInsumo({{i.id}})" class="btn!important  btn-outline-danger btn-sm">Eliminar</a>
+                        <td style="border: 1px solid black">{{ i.name | title }}</td>
+                        <td style="border: 1px solid black">{{ i.price | intcomma }}</td>
+                        <td style="border: 1px solid black">{{ i.Stock }}</td>
+                        <td style="border: 1px solid black">
+                            {% if perms.app.change_insumo %}
+                            <a href="{% url 'modificar_insumos' i.id %}" class="btn!important btn-info btn-sm">Modificar</a>
+                            {% endif %}
+
+                            {% if perms.app.delete_insumo %}
+                            <a href="#" onclick="eliminarInsumo({{i.id}})" class="btn!important  btn-danger btn-sm">Eliminar</a>
+                            {% endif %}
                         </td>
                         
                     </tr>
@@ -58,18 +63,13 @@
                 <div>
                     {% include 'app/paginator.html' %}
                 </div>
-    
-
             </div>
         </div>
 
         <br>
-                <br>
-                <br>
+        <br>
+        <br>
 
     </div>
 </div>
-
-
-
 {% endblock %}

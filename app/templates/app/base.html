@@ -49,14 +49,17 @@
 							<a href="{% url 'contacto' %}" class="text-decoration-none">Contacto</a>
 						</li>
 
+						{% if perms.app.add_insumo %}
 						<li>
 							<a href="{% url 'agregar_insumo' %}" class="text-decoration-none">Agregar Insumos</a>
 						</li>
+						{% endif %}
 
+						{% if perms.app.view_insumo %}
 						<li>
 							<a href="{% url 'listar_insumos'%}" class="text-decoration-none">Listar Insumos</a>
 						</li>
-
+						{% endif %}
 
 						{% if user.is_authenticated %}
 

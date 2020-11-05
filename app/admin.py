@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Services, Insumo, Slider, Gallery, Mision , Vision, Contacto, User
+from .forms import InsumoForm
 
 # Register your models here.
 #solo se pueden editar casillas que no sean el nombre principal
@@ -17,6 +18,7 @@ class InsumoAdmin(admin.ModelAdmin):
     search_fields = ["name"]
     list_filter =  ["name","price", "Stock"]
     list_per_page = 10
+    form = InsumoForm
 
 
 class SliderAdmin(admin.ModelAdmin):
