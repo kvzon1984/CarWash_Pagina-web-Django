@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Slider, Gallery, Mision, Vision, Insumo
 from .forms import ContactoForm, InsumoForm
+from django.contrib import messages
 
 # Create your views here.
 
@@ -55,7 +56,7 @@ def agregar_insumo(request):
         formulario = InsumoForm(data=request.POST, files=request.FILES)
         if formulario.is_valid():
             formulario.save()
-            data["mensaje"] = "Guardado correctamente"
+            messages.success(request, "Agregado correctamente")
         else:
             data["form"] = formulario
 
@@ -83,6 +84,7 @@ def modificar_insumos(request, id):
         formulario = InsumoForm(data=request.POST, instance=insumo, files=request.FILES)
         if formulario.is_valid():
             formulario.save()
+            messages.success(request, "Modificado correctamente")
             return redirect(to="listar_insumos")
 
             data["form"] = formulario
@@ -93,4 +95,5 @@ def modificar_insumos(request, id):
 def eliminar_insumos(request, id):
     insumo = get_object_or_404(Insumo, id=id)
     insumo.delete()
+    messages.success(request, "Eliminado correctamente")
     return redirect(to="listar_insumos")
