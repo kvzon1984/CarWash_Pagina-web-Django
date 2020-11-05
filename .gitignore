@@ -107,3 +107,8 @@ ENV/
 *.pyc
 *.db
 *.pid
+app/__pycache__/admin.cpython-38.pyc
+app/__pycache__/admin.cpython-38.pyc
+carWashSegundaEntrega/__pycache__/settings.cpython-38.pyc
+app/__pycache__/views.cpython-38.pyc
+app/__pycache__/admin.cpython-38.pyc
