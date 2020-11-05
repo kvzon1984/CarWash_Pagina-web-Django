@@ -41,3 +41,41 @@ class Gallery(models.Model):
 
     def __str__(self):
         return self.name
+
+class Mision(models.Model):
+    name = models.CharField(max_length=50)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+
+
+class Vision(models.Model):
+    name = models.CharField(max_length=50)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+
+options_query =[
+    [0, "consulta"],
+    [1,"reclamo"],
+    [2,"sugerencia"],
+    [3,"felicitaciones"]
+
+]
+
+class Contacto(models.Model):
+    query_type = models.IntegerField(choices=options_query)
+    name = models.CharField(max_length=50)
+    email = models.EmailField()
+    message = models.TextField()
+    notices = models.BooleanField()
+
+    def __str__ (self):
+        return self.name
+
+
+
