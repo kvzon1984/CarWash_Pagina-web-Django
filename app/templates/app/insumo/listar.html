@@ -1,9 +1,30 @@
 {% extends 'app/base.html' %}
 
-{% block contenido %}
+{% block js %}
+<script>
+    function eliminarInsumo(id){
+        Swal.fire({
+            "title":"Estas seguro?",
+            "text":"Esta accion no se puede deshacer",
+            "icon":"question",
+            "showCancelButton":true,
+            "cancelButtonText":"No, Cancelar",
+            "confirmButtonText":"Si, Eliminar",
+            "reverseButtons":true,
+            "confirmButtonColor": "#dc3545"
+        })
 
+        .then(function(result){
+            if(result.isConfirmed) {
+                window.location.href = "/eliminar-insumos/"+id+"/"
+            }
+        })
+    }
+</script>
+{% endblock %}
+
+{% block contenido %}
 {% load humanize %}
-{% load crispy_forms_tags %}
 
 <div class="row">
     <div class="col-12 col-md-6 offset-md-3">
@@ -27,11 +48,10 @@
                         <td>{{ i.Stock }}</td>
                         <td>
                             <a href="{% url 'modificar_insumos' i.id %}" class="btn!important btn-info btn-sm">Modificar</a>
-                            <a href="{% url 'eliminar_insumos' i.id %}" class="btn!important  btn-danger btn-sm">Eliminar</a>
+                            <a href="#" onclick="eliminarInsumo({{i.id}})" class="btn!important  btn-danger btn-sm">Eliminar</a>
                         </td>
                         
                     </tr>
-                
                     {% endfor %}
                 </table>
     

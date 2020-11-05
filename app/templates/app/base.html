@@ -47,7 +47,7 @@
 						</li>
 
 						<li>
-							<a href="{% url 'agregar_insumo' %}">Agregar Producto</a>
+							<a href="{% url 'agregar_insumo' %}">Agregar Insumos</a>
 						</li>
 
 						<li>
@@ -73,7 +73,8 @@
 			</div>
 		</div>
 		<!--BOTON <a href="#" class="btn">Read More <i class="fas fa-angle-double-right"></i></a>-->
-		
+
+
         {% block contenido %}
 
         {% endblock %}
@@ -96,7 +97,19 @@
 		</footer>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+		{% if messages%}
+			{%for m in messages %}
+				<script>
+					Swal.fire({
+						"title"	: "Felicitaciones",
+						"text" : "{{m}}",
+						"icon" : "success"
+					})
+				</script>
+			{% endfor %}
+		{% endif%}
+
         {% block js %}
         {% endblock %}
 		

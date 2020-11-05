@@ -48,6 +48,14 @@ class VisionAdmin(admin.ModelAdmin):
     list_per_page = 10
 
 
+class ContactoAdmin(admin.ModelAdmin):
+    list_display = ["query_type","name", "email", "message","notices"]
+    list_editable = [ "name", "email"]
+    search_fields = ["query_type","name"] 
+    list_filter =  ["query_type"]
+    list_per_page = 10
+
+
 
 
 admin.site.register(Services, ServiceAdmin)
@@ -56,4 +64,4 @@ admin.site.register(Gallery,GalleryAdmin)
 admin.site.register(Slider, SliderAdmin)
 admin.site.register(Mision, MisionAdmin)
 admin.site.register(Vision, VisionAdmin)
-admin.site.register(Contacto)
+admin.site.register(Contacto,ContactoAdmin)
