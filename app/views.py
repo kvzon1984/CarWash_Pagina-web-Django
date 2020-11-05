@@ -3,6 +3,7 @@ from .models import Slider, Gallery, Mision, Vision, Insumo
 from .forms import ContactoForm, InsumoForm
 from django.contrib import messages
 from django.core.paginator import Paginator
+from django.http import Http404
 
 # Create your views here.
 
@@ -64,11 +65,23 @@ def agregar_insumo(request):
 
     return render(request,'app/insumo/agregar.html',data)
 
+
+
 def listar_insumos(request):
 
     insumos = Insumo.objects.all()
+    page = request.GET.get('page',1)
+
+    try:
+        paginator = Paginator(insumos,5)
+        insumos = paginator.page(page)
+    except:
+        raise Http404
+
+
     data = {
-        'insumos' : insumos
+        'entity' : insumos,
+        'paginator':paginator
     }
 
     return render(request, 'app/insumo/listar.html' , data)
