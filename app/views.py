@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Slider, Gallery, Mision, Vision, Insumo
 from .forms import ContactoForm, InsumoForm
 from django.contrib import messages
+from django.core.paginator import Paginator
 
 # Create your views here.
 
@@ -48,6 +49,7 @@ def login(request):
 
 
 def agregar_insumo(request):
+
 
     data = {
         'form' : InsumoForm()
