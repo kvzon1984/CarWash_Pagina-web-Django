@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Slider, Gallery, Mision, Vision, Insumo
-from .forms import ContactoForm, InsumoForm
+from .models import Slider, Gallery, Mision, Vision, Insumo, User
+from .forms import ContactoForm, InsumoForm, CustomUserCreationForm
 from django.contrib import messages
 from django.core.paginator import Paginator
+from django.contrib.auth import authenticate, login
 
 # Create your views here.
 
@@ -42,12 +43,24 @@ def galeria(request):
     return render(request, 'app/galeria.html', data)
 
 def registro(request):
-    return render(request, 'app/registro.html')
 
-def login(request):
-    return render(request, 'app/login.html')
+    data = {
+        'form' : CustomUserCreationForm()
+    }
+    
+    if request.method == 'POST':
+        formulario = CustomUserCreationForm(data=request.POST)
+        if formurario.is_valid():
+            formulario.save()
+            user = authenticate(username=formulario.cleaned_data["username"], password=formulario.cleaned_data["password1"])
+            login(request, user)
+            messages.success(request, "Se a registrado de forma correcta")
+            return redirect(to="index")
+        data["form"] = formulario
 
+    return render(request, 'registration/registro.html', data)
 
+    
 def agregar_insumo(request):
 
 
