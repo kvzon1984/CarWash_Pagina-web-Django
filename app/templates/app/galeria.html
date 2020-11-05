@@ -10,24 +10,12 @@
 <div id="galeria">
     <h2>Galeria</h2>
     <br />
-<<<<<<< HEAD
-
-    
-    <div class="galeria">
-        {% for i in gallery %}
-        {% if gallery %}
-        <a data-fancybox="gallery" href="{{ i.image.url }}">
-            <img src="{{ i.image.url }}" />
-        </a>
-        {% endif %}
-=======
     
     <div class="galeria">
         {% for i in gallery %}
         <a data-fancybox="gallery" href="{{i.image.url}}">
             <img src="{{i.image.url}}" />
         </a>
->>>>>>> 4b1f2f7225e07d69905154b9d16530b437541681
         {% endfor %}
     </div>
     
