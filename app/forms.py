@@ -1,10 +1,9 @@
 from django import forms
-from .models import Contacto, Insumo
+from .models import Contacto, Insumo, Contacto
 from django.contrib.auth.forms import  UserCreationForm
 from django.contrib.auth.models import User
 from django.forms import ValidationError
-
-
+from django.core.validators import validate_slug
 
 from .Validators import MaxsizeFileValidator, MaxLengthValidator
 
@@ -12,6 +11,17 @@ from .Validators import MaxsizeFileValidator, MaxLengthValidator
 #fields = ["name1", "name2"] deben ser los mismos campos de models
 
 class ContactoForm(forms.ModelForm):
+
+    name = forms.CharField(max_length=50)
+
+
+    def clean_name(self):
+        name = self.cleaned_data["name"]
+        if not name.isalpha():
+            raise forms.ValidationError("The name cannot contain numbers")
+        return name
+
+
 
     class Meta:
         model = Contacto
@@ -21,7 +31,7 @@ class ContactoForm(forms.ModelForm):
 
 class InsumoForm(forms.ModelForm):
 
-    name = forms.CharField(min_length= 3, max_length=120, required=True )
+    name = forms.CharField(min_length= 3, max_length=120, required=True)
     price = forms.IntegerField(min_value=1, required=True)
     Image = forms.ImageField(required=False, validators=[MaxsizeFileValidator(max_file_size=2)])
     Description = forms.CharField( min_length=3, max_length=120, required=False ,widget=forms.Textarea())
@@ -31,7 +41,7 @@ class InsumoForm(forms.ModelForm):
         name = self.cleaned_data["name"]
         exist = Insumo.objects.filter(name__iexact=name).exists()
         if exist:
-            raise ValidationError("This name already exists ")
+            raise ValidationError("This name already exists. Please try again ")
 
         return name
 
@@ -47,13 +57,26 @@ class CustomUserCreationForm(UserCreationForm):
     last_name = forms.CharField(min_length= 3, max_length=80, required=True)
     email =forms.EmailField(required=True)
     
+    def clean_first_name(self):
+        first_name = self.cleaned_data["first_name"]
+        if not first_name.isalpha():
+            raise forms.ValidationError("The name cannot contain numbers")
+        return first_name
+
+    def clean_last_name(self):
+        last_name = self.cleaned_data["last_name"]
+        if not last_name.isalpha():
+            raise forms.ValidationError("The name cannot contain numbers")
+        return last_name
+
+
 
 
     def clean_email (self):
         email = self.cleaned_data["email"]
         exist = User.objects.filter(email__iexact=email).exists()
         if exist:
-            raise ValidationError("This email already exists")
+            raise ValidationError("This email already exists. Please try again")
 
         return email
 
