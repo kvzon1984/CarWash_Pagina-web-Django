@@ -12,14 +12,14 @@
         <div class="card"  style="background-color: #e9ecef">
             <div class="card-body "> 
                 
-                <h2 class="text-center">Agregar Insumos</h2>
+                <h2 class="text-center">Add Supllies</h2>
                 <hr>
                 <form action="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form | crispy}}
 
                     <div class="d-flex justify-content-end">
-                        <input type="reset" value="Cancel" class="btn!important btn-outline-secondary btn-lg">
+                        <input type="reset" value="Reset" class="btn!important btn-outline-secondary btn-lg">
                         &nbsp;
                         &nbsp;
                         &nbsp;

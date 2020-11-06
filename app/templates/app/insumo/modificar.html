@@ -12,21 +12,21 @@
         <div class="card"  style="background-color: #e9ecef">
             <div class="card-body "> 
                 
-                <h2 class="text-center">Editar Insumos</h2>
+                <h2 class="text-center">Edit Supplies</h2>
                 <hr>
                 <form action="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form | crispy}}
-
+  
                     <div class="d-flex justify-content-center">
-                        <input type="reset" value="Cancelar" class="btn!important btn-outline-secondary btn-lg">
+                        <input  type="reset" value="Reset" class="btn!important btn-outline-secondary btn-lg">
                         &nbsp;
                         &nbsp;
                         &nbsp;
-                        <input type="submit" value="Editar" class="btn!important btn-outline-success btn-lg">
+                        <input  type="submit" value="Edit" class="btn!important btn-outline-success btn-lg">
+
                     </div>
                 </form>
-                {{mensaje}}
             </div>
         </div>
         

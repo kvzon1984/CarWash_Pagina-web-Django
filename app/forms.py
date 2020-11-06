@@ -21,17 +21,17 @@ class ContactoForm(forms.ModelForm):
 
 class InsumoForm(forms.ModelForm):
 
-    name = forms.CharField(min_length= 3, max_length=120, required=True)
+    name = forms.CharField(min_length= 3, max_length=120, required=True )
     price = forms.IntegerField(min_value=1, required=True)
     Image = forms.ImageField(required=False, validators=[MaxsizeFileValidator(max_file_size=2)])
-    Description = forms.CharField(min_length=3, max_length=120, required=False)
+    Description = forms.CharField( min_length=3, max_length=120, required=False ,widget=forms.Textarea())
     Stock = forms.IntegerField(min_value=0, required=True)
     
     def clean_nombre(self):
         name = self.cleaned_data["name"]
         exist = Insumo.objects.filter(name__iexact=name).exists()
         if exist:
-            raise ValidationError("Este nombre ya existe")
+            raise ValidationError("This name already exists ")
 
         return name
 
@@ -53,7 +53,7 @@ class CustomUserCreationForm(UserCreationForm):
         email = self.cleaned_data["email"]
         exist = User.objects.filter(email__iexact=email).exists()
         if exist:
-            raise ValidationError("Este email ya existe")
+            raise ValidationError("This email already exists")
 
         return email
 

@@ -58,7 +58,7 @@ class Vision(models.Model):
     def __str__(self):
         return self.name
 
-
+#options for class contact
 options_query =[
     [0, "consulta"],
     [1,"reclamo"],

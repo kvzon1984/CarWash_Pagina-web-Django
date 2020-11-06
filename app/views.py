@@ -30,7 +30,7 @@ def contacto(request):
         formulario = ContactoForm (data=request.POST)
         if formulario.is_valid():
             formulario.save()
-            data["mensaje"] = "contacto guardado" 
+            messages.success(request, "Add contact")
         else:
             data["form"] = formulario
 
@@ -59,7 +59,7 @@ def registro(request):
             formulario.save()
             user = authenticate(username=formulario.cleaned_data["username"], password=formulario.cleaned_data["password1"])
             login(request, user)
-            messages.success(request, "Se a registrado de forma correcta")
+            messages.success(request, "Successful registration")
             return redirect(to="index")
         data["form"] = formulario
 
@@ -77,7 +77,7 @@ def agregar_insumo(request):
         formulario = InsumoForm(data=request.POST, files=request.FILES)
         if formulario.is_valid():
             formulario.save()
-            messages.success(request, "Agregado correctamente")
+            messages.success(request, "Added correctly")
         else:
             data["form"] = formulario
 
@@ -118,7 +118,7 @@ def modificar_insumos(request, id):
         formulario = InsumoForm(data=request.POST, instance=insumo, files=request.FILES)
         if formulario.is_valid():
             formulario.save()
-            messages.success(request, "Modificado correctamente")
+            messages.success(request, "Modified Correctly")
             return redirect(to="listar_insumos")
 
             data["form"] = formulario
@@ -131,5 +131,5 @@ def modificar_insumos(request, id):
 def eliminar_insumos(request, id):
     insumo = get_object_or_404(Insumo, id=id)
     insumo.delete()
-    messages.success(request, "Eliminado correctamente")
+    messages.success(request, "Deleted correctly")
     return redirect(to="listar_insumos")

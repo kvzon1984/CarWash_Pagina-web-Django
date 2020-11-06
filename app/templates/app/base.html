@@ -42,29 +42,29 @@
 						</li>
 
 						<li>
-							<a href="{% url 'galeria' %}" class="text-decoration-none">Galeria</a>
+							<a href="{% url 'galeria' %}" class="text-decoration-none">Gallery</a>
 						</li>
 
 						<li>
-							<a href="{% url 'contacto' %}" class="text-decoration-none">Contacto</a>
+							<a href="{% url 'contacto' %}" class="text-decoration-none">Contact</a>
 						</li>
 
 						{% if perms.app.add_insumo %}
 						<li>
-							<a href="{% url 'agregar_insumo' %}" class="text-decoration-none">Agregar Insumos</a>
+							<a href="{% url 'agregar_insumo' %}" class="text-decoration-none">Add Supplies</a>
 						</li>
 						{% endif %}
 
 						{% if perms.app.view_insumo %}
 						<li>
-							<a href="{% url 'listar_insumos'%}" class="text-decoration-none">Listar Insumos</a>
+							<a href="{% url 'listar_insumos'%}" class="text-decoration-none">List Supplies</a>
 						</li>
 						{% endif %}
 
 						{% if user.is_authenticated %}
 
 						<li>
-							<a href="{% url 'logout' %}">Cerrar Sesion</a>
+							<a href="{% url 'logout' %}">Logout</a>
 						</li>
 						<li>
 							<a href="#">@{{ user.username }}</a>
@@ -72,11 +72,11 @@
 
 						{% else %}
 						<li>
-							<a href="{% url 'login' %}">Iniciar Secion</a>
+							<a href="{% url 'login' %}">Login</a>
 						</li>
 
 						<li>
-							<a href="{% url 'registro' %}">Registro</a>
+							<a href="{% url 'registro' %}">Register</a>
 						</li>
 						{% endif %}
 					</ul>
@@ -87,7 +87,7 @@
 
 		<div class="feriado-image" style= "height: 45px">
 			<div class="feriado-text justify-content-center" style="padding-top: 25px">
-				<p>Proximo feriado: <label for="" id="feriado"></label></p>
+				<p>Upcomming holiday: <label for="" id="feriado"></label></p>
 			</div>
 		</div>
 		<!--BOTON <a href="#" class="btn">Read More <i class="fas fa-angle-double-right"></i></a>-->
@@ -96,7 +96,7 @@
         {% block contenido %}
 
         {% endblock %}
-
+		<br>
 		<footer>
 			<div class="marcas">
                 <img src="{% static 'app/img/audi.jfif' %}" alt="audi" />
@@ -108,8 +108,8 @@
 			<div class="logo_footer">
 				<img src="{% static 'app/img/logo.jpg' %}" alt="Logo" />
 			</div>
-			<a href="https://www.freepik.es/vectores/banner">Vector de Banner creado por freepik - www.freepik.es</a>
-			<div id="copyright">Copyright&copy; 2020 - Página creada por Iou™ - Todos los derechos reservados®</div>
+			<a href="https://www.freepik.es/vectores/banner">Vector of Banner created by freepik - www.freepik.es</a>
+			<div id="copyright">Copyright&copy; 2020 - Page create by Iou™ - All rights reserved®</div>
 		</footer>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -118,7 +118,7 @@
 			{%for m in messages %}
 				<script>
 					Swal.fire({
-						"title"	: "Felicitaciones",
+						"title"	: "Congratulations",
 						"text" : "{{m}}",
 						"icon" : "success"
 					})
@@ -136,5 +136,6 @@
 		{# Falta agregar js en la carpeta app para que funciones el los js #}
 		<script src="{% static 'app/js/menu.js' %}"></script>
 		<script src="{% static 'app/js/feriados.js' %}"></script>
+		
 	</body>
 </html>

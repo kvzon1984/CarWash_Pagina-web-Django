@@ -10,17 +10,17 @@
         <div class="col-12 col-md-6 offset-md-3">
             <div class="card" style="background-color: #e9ecef">
                 <div class="card-body">
-                    <h2 class="text-center">Registrate</h2>
+                    <h2 class="text-center">Register</h2>
 
                     <form action="" method="POST">
 
                         {% csrf_token %}
                         {{ form | crispy }}
 
-                        <a href="{% url 'index' %}">Go home</a> | <a href="{% url 'login' %}">Iniciar Sesion</a>
+                        <a href="{% url 'index' %}">Go home</a> | <a href="{% url 'login' %}">Login</a>
                         
 
-                        <input type="submit" value="Registar" class="btn btn-success float-right">
+                        <input type="submit" value="Register" class="btn btn-success float-right">
                     </form>
                 </div>
             </div>
