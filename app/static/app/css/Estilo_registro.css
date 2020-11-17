@@ -90,12 +90,22 @@
 	min-height: 100vh;
 }
 
+.facebook{
+	width: 25px;
+	height: 25px;
+}
+
 /*MEDIA QUERY*/
 
 /*TABLET*/
 @media (max-width: 1024px) {
 	header .nav-main {
 		flex-direction: row;
+	}
+
+	.facebook{
+		width: 25px;
+		height: 25px;
 	}
 
 	.login {
@@ -155,6 +165,11 @@
 	.login div {
 		margin-top: 10px;
 		font-size: 10px;
+	}
+
+	.facebook{
+		width: 25px;
+		height: 25px;
 	}
 
 	.login .login__container--forgot {

@@ -70,6 +70,15 @@
 							<a href="#">@{{ user.username }}</a>
 						</li>
 
+						<li>
+							{% for auth in backends.associated %}
+
+								{% if auth.provider == 'facebook' %}
+									<img src="{{ auth.extradata.picture.data.url }}" alt="" width="40" height="40">
+								{% endif %}
+							{% endfor %}
+						</li>
+
 						{% else %}
 						<li>
 							<a href="{% url 'login' %}">Login</a>
