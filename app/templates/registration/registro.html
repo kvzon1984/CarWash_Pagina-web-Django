@@ -1,5 +1,6 @@
 {% extends 'app/base.html' %}
 
+{% load static %}
 
 {% block contenido %}
 
@@ -22,6 +23,13 @@
 
                         <input type="submit" value="Register" class="btn btn-success float-right">
                     </form>
+
+                    <br>
+                    <br>
+
+                    <img id="facebook" src="{% static 'app/img/icono-facebook.png' %}" alt="facebook" class="facebook" width="25px" height="25px"/>
+
+                    <a href="{% url 'social:begin' 'facebook' %}">Login in with Facebook</a>
                 </div>
             </div>
         </div>

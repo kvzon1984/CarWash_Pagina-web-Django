@@ -48,6 +48,7 @@ def galeria(request):
 
 def registro(request):
 
+
     data = {
         'form' : CustomUserCreationForm()
     }
@@ -64,6 +65,7 @@ def registro(request):
         data["form"] = formulario
 
     return render(request, 'registration/registro.html', data)
+
 
 
 @permission_required('app.add_insumo')    
@@ -133,3 +135,4 @@ def eliminar_insumos(request, id):
     insumo.delete()
     messages.success(request, "Deleted correctly")
     return redirect(to="listar_insumos")
+
