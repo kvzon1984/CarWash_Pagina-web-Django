@@ -60,10 +60,10 @@ class Vision(models.Model):
 
 #options for class contact
 options_query =[
-    [0, "consulta"],
-    [1,"reclamo"],
-    [2,"sugerencia"],
-    [3,"felicitaciones"]
+    [0, "Query"],
+    [1,"Demand"],
+    [2,"Suggestion"],
+    [3,"Congratulations"]
 
 ]
 
