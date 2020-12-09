@@ -7,7 +7,7 @@ from django.core.paginator import Paginator
 from django.http import Http404
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required, permission_required
-from rest_framework import  serializers, viewsets
+from rest_framework import   viewsets
 from .serializers import InsumoSerializer, ContactoSerializer
 
 # Create your views here.
