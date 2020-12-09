@@ -1,5 +1,5 @@
 from django import forms
-from .models import Contacto, Insumo, Contacto
+from .models import Contacto, Insumo
 from django.contrib.auth.forms import  UserCreationForm
 from django.contrib.auth.models import User
 from django.forms import ValidationError
@@ -12,7 +12,10 @@ from .Validators import MaxsizeFileValidator, MaxLengthValidator
 
 class ContactoForm(forms.ModelForm):
 
-    name = forms.CharField(max_length=50)
+    name = forms.CharField(min_length=3, max_length=50)
+    last_name = forms.CharField(min_length=3 ,max_length=50)
+    subject = forms.CharField(min_length=8 ,max_length=50)
+    message = forms.CharField( min_length=10, max_length=200 ,widget=forms.Textarea())
 
 
     def clean_name(self):

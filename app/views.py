@@ -1,11 +1,14 @@
+
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Slider, Gallery, Mision, Vision, Insumo
+from .models import Contacto, Slider, Gallery, Mision, Vision, Insumo
 from .forms import ContactoForm, InsumoForm, CustomUserCreationForm
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.http import Http404
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required, permission_required
+from rest_framework import  serializers, viewsets
+from .serializers import InsumoSerializer, ContactoSerializer
 
 # Create your views here.
 
@@ -30,7 +33,7 @@ def contacto(request):
         formulario = ContactoForm (data=request.POST)
         if formulario.is_valid():
             formulario.save()
-            messages.success(request, "Add contact")
+            messages.success(request, "Send")
         else:
             data["form"] = formulario
 
@@ -136,3 +139,45 @@ def eliminar_insumos(request, id):
     messages.success(request, "Deleted correctly")
     return redirect(to="listar_insumos")
 
+
+
+# views para el serializers
+
+class InsumoViewset(viewsets.ModelViewSet):
+    queryset = Insumo.objects.all()
+    serializer_class = InsumoSerializer
+    
+    def get_queryset(self):
+        insumos = Insumo.objects.all()
+
+        name = self.request.GET.get('name')
+        Stock = self.request.GET.get('Stock')
+
+        if name :
+
+            insumos = insumos.filter(name__contains=name)
+
+        if Stock:
+
+            insumos = insumos.filter(Stock__contains=Stock)
+
+        return  insumos
+
+
+class ContactoViewset(viewsets.ModelViewSet):
+    queryset = Contacto.objects.all()
+    serializer_class = ContactoSerializer
+
+    def get_queryset(self):
+        contacto = Contacto.objects.all()
+
+        subject = self.request.GET.get('subject')
+        contact_type = self.request.GET.get('contact_type')
+
+        if subject:
+            contacto = contacto.filter(subject__contains=subject)
+
+        if contact_type:
+            contacto = contacto.filter(contact_type__contains=contact_type)
+
+        return contacto
