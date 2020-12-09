@@ -51,10 +51,10 @@ class VisionAdmin(admin.ModelAdmin):
 
 
 class ContactoAdmin(admin.ModelAdmin):
-    list_display = ["query_type","name", "email", "message","notices"]
-    list_editable = [ "name", "email"]
-    search_fields = ["query_type","name"] 
-    list_filter =  ["query_type"]
+
+    list_display = ["name", "last_name", "subject","contact_type","message"]
+    search_fields = ["subject","contact_type"] 
+    list_filter =  ["contact_type"]
     list_per_page = 10
 
 class UserAdmin(admin.ModelAdmin):

@@ -60,19 +60,19 @@ class Vision(models.Model):
 
 #options for class contact
 options_query =[
-    [0, "Query"],
+    [0, "Request"],
     [1,"Demand"],
-    [2,"Suggestion"],
-    [3,"Congratulations"]
+    [2,"Suggest"],
 
 ]
 
 class Contacto(models.Model):
-    query_type = models.IntegerField(choices=options_query)
     name = models.CharField(max_length=50)
-    email = models.EmailField()
+    last_name = models.CharField(max_length=50)
+    subject = models.CharField(max_length=50)
+    contact_type = models.IntegerField(choices=options_query)
     message = models.TextField()
-    notices = models.BooleanField()
+    
 
     def __str__ (self):
         return self.name
