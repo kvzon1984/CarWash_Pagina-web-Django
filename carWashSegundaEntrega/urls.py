@@ -23,6 +23,7 @@ urlpatterns = [
     path('', include('app.urls') ),
     path('accounts/', include('django.contrib.auth.urls')),
     path('social-auth/', include('social_django.urls', namespace="social")),
+    path('', include('pwa.urls')),
 ]
 
 
