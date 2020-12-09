@@ -4,4 +4,5 @@ django-admin-interface
 django-crispy-forms
 social-auth-app-django
 django-rest-framework
+django-pwa
 # pip install -r requirements.txt
