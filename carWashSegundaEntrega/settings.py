@@ -69,6 +69,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'social_django',
     'pwa',
+    'fcm_django',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -200,3 +201,18 @@ PWA_APP_ICONS_APPLE = [
 
 
 PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'serviceworker.js')
+
+
+FCM_DJANGO_SETTINGS = {
+         # default: _('FCM Django')
+        "APP_VERBOSE_NAME": "CarWash",
+         # Your firebase API KEY
+        "FCM_SERVER_KEY": "AAAAk0j0gHs:APA91bH8wLME-tawbBlzgb8bZbwZXWY5P8o18FsbPfSGsUEYxqmKIuaI_w5QNbro8XKfOwTOWcpWvWB_QmXDakXo1AIfmmb-FS73K-E5MlcbYYx_7nxTLzOeJaN7xP2dfTqIpxFC5z_Z",
+         # true if you want to have only one active device per registered user at a time
+         # default: False
+        "ONE_DEVICE_PER_USER": False,
+         # devices to which notifications cannot be sent,
+         # are deleted upon receiving error response from FCM
+         # default: False
+        "DELETE_INACTIVE_DEVICES": True,
+}
