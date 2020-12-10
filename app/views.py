@@ -8,9 +8,34 @@ from django.http import Http404
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required, permission_required
 from rest_framework import   viewsets
-from .serializers import InsumoSerializer, ContactoSerializer
+from .serializers import InsumoSerializer, ContactoSerializer, TokenSerializer
+
+from django.http import JsonResponse
+from rest_framework.decorators import api_view
+from fcm_django.models import FCMDevice
 
 # Create your views here.
+
+@api_view(["POST"])
+def save_token(request):
+    serializador = TokenSerializer(data= request.data)
+
+    if serializador.is_valid():
+        token = serializador.data["token"]
+
+        dispositivo = FCMDevice.objects.filter(registration_id=token, active=True).first()
+
+        if not dispositivo:
+            dispositivo = FCMDevice(registration_id=token, active=True)
+        
+        if request.user.is_authenticated:
+            dispositivo.user = request.user
+
+        dispositivo.save()
+
+        return JsonResponse({"mensaje": "ok"}, status=200)
+    
+    return JsonResponse({"mensaje": "No se Guardo Token"}, status=400)
 
 def index(request):
     slider = Slider.objects.all()
@@ -59,12 +84,20 @@ def registro(request):
     if request.method == 'POST':
         formulario = CustomUserCreationForm(data=request.POST)
 
-        if formulario.is_valid():
-            formulario.save()
-            user = authenticate(username=formulario.cleaned_data["username"], password=formulario.cleaned_data["password1"])
-            login(request, user)
-            messages.success(request, "Successful registration")
-            return redirect(to="index")
+        #if formulario.is_valid():
+        #    formulario.save()                
+        #    user = authenticate(username=formulario.cleaned_data["username"], password=formulario.cleaned_data["password1"])
+        #    login(request, user)
+        #    if request.user.is_authenticated:
+        #        dispositivo = FCMDevice.is_superuser.all()
+        #        dispositivo.send_message(
+        #            title= "Nuevo Usuario Registrado",
+        #            body="Se ha ingresado un nuevo registro",
+        #            icon= "/static/app/img/logo.jpg"
+        #        )
+
+        messages.success(request, "Successful registration")
+        return redirect(to="index")
         data["form"] = formulario
 
     return render(request, 'registration/registro.html', data)
@@ -82,6 +115,19 @@ def agregar_insumo(request):
         formulario = InsumoForm(data=request.POST, files=request.FILES)
         if formulario.is_valid():
             formulario.save()
+
+            if request.user.is_authenticated:
+
+                dispositivo = FCMDevice.objects.filter(active=True)
+                nombre_contacto = formulario.cleaned_data["name"]
+                stock_insumo = formulario.cleaned_data["Stock"]
+                nombre_insumo = formulario.cleaned_data["Description"]
+                dispositivo.send_message(
+                    title= "Nuevo Insumo Ingresado",
+                    body=f"{nombre_contacto} ha ingreso {stock_insumo} {nombre_insumo}",
+                    icon= "/static/app/img/logo.jpg"
+                )
+
             messages.success(request, "Added correctly")
         else:
             data["form"] = formulario

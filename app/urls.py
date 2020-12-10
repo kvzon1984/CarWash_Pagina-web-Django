@@ -1,6 +1,6 @@
 from django.urls import path, include
 from .views import  index, contacto, galeria, registro, agregar_insumo, \
-    listar_insumos, modificar_insumos, eliminar_insumos,InsumoViewset,ContactoViewset
+    listar_insumos, modificar_insumos, eliminar_insumos,InsumoViewset,ContactoViewset,save_token
 
 from rest_framework import routers
 
@@ -19,6 +19,5 @@ urlpatterns = [
     path('modificar-insumos/<id>/', modificar_insumos, name="modificar_insumos"),
     path('eliminar-insumos/<id>/', eliminar_insumos, name="eliminar_insumos"),
     path('api/', include(router.urls)),
-    
-
+    path('save-token/', save_token, name="save_token"),
 ]

@@ -18,3 +18,7 @@ class ContactoSerializer(serializers.ModelSerializer):
 
         model = Contacto
         fields = '__all__'
+
+
+class TokenSerializer(serializers.Serializer):
+    token = serializers.CharField(required=True)
