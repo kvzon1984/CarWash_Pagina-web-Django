@@ -28,6 +28,71 @@
 		<link rel="stylesheet" href="{% static 'app/css/styles.css' %}" />
 		<link rel="stylesheet" href="{% static 'app/css/style_services.css' %}" />
 		<link rel="stylesheet" href="{% static 'app/css/styles_contacto.css' %}" />
+	
+	<!-- script de firebase -->
+
+	<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase-messaging.js"></script>
+		
+	<script>
+		// Your web app's Firebase configuration
+		var firebaseConfig = {
+	  	apiKey: "AIzaSyAmKQi-zk2S7NhIVcyxAAIeAdzUJuutWEg",
+	  	authDomain: "carwash-96c32.firebaseapp.com",
+	  	projectId: "carwash-96c32",
+	  	storageBucket: "carwash-96c32.appspot.com",
+	  	messagingSenderId: "632584175739",
+	  	appId: "1:632584175739:web:1a3e3e0b6222c6b0f122de"
+		};
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+
+		//solicitar notificaciones al usuario
+
+		let messaging  = firebase.messaging();
+
+  		navigator.serviceWorker
+  		.register('/serviceworker.js')
+  		.then(function(register) {
+      		messaging.useServiceWorker(register);
+      
+      		messaging.requestPermission()
+      		.then(function() {
+        	return messaging.getToken();
+      	})
+      	.then(function(token) {
+			console.log(token)
+			let data = {
+				"token": token
+			}
+
+			fetch("/save-token/", {
+				
+				headers:{
+					"Content-Type" : "application/json",
+					"Accept" : "application/json",
+					"X-CSRFToken" : "{{ csrf_token }}"
+				},
+				method: "post",
+				body: JSON.stringify(data)
+			})
+      	})
+      	.catch(function(e) {
+        	console.log("El usuario no ha aceptado el envío")
+      	})
+  	})
+
+	//recibir la notificacion desde firebase (archivo base)
+  	messaging.onMessage(function(payload) {
+    	let title = payload.notification.title;
+    	let options = {
+        	body: payload.notification.body,
+        	icon: payload.notification.icon
+    	}
+    	new Notification(title, options);
+  		})
+
+  	</script>
 	</head>
 
 	<body>

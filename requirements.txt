@@ -5,4 +5,5 @@ django-crispy-forms
 social-auth-app-django
 django-rest-framework
 django-pwa
+fcm-django
 # pip install -r requirements.txt

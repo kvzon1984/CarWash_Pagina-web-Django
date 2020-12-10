@@ -37,7 +37,7 @@ class InsumoForm(forms.ModelForm):
     name = forms.CharField(min_length= 3, max_length=120, required=True)
     price = forms.IntegerField(min_value=1, required=True)
     Image = forms.ImageField(required=False, validators=[MaxsizeFileValidator(max_file_size=2)])
-    Description = forms.CharField( min_length=3, max_length=120, required=False ,widget=forms.Textarea())
+    Description = forms.CharField( min_length=3, max_length=120, required=True ,widget=forms.Textarea())
     Stock = forms.IntegerField(min_value=0, required=True)
     
     def clean_nombre(self):

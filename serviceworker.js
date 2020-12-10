@@ -86,3 +86,32 @@ self.addEventListener("fetch", function(event){
         })
     )
 });
+
+importScripts('https://www.gstatic.com/firebasejs/3.9.0/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/3.9.0/firebase-messaging.js');
+
+var firebaseConfig = {
+    apiKey: "AIzaSyAmKQi-zk2S7NhIVcyxAAIeAdzUJuutWEg",
+    authDomain: "carwash-96c32.firebaseapp.com",
+    projectId: "carwash-96c32",
+    storageBucket: "carwash-96c32.appspot.com",
+    messagingSenderId: "632584175739",
+    appId: "1:632584175739:web:1a3e3e0b6222c6b0f122de"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+//solicitar notificaciones al usuario
+
+let messaging  = firebase.messaging();
+
+messaging.setBackgroundMessageHandler(function(payload) {
+
+    let title = payload.notification.title;
+    let options = {
+        body: payload.notification.body,
+        icon: payload.notification.icon
+    }
+
+    self.registration.showNotification(title, options);
+});
