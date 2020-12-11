@@ -94,7 +94,7 @@ def registro(request):
                     dispositivo.send_message(
                         title= "Nuevo Usuario Registrado",
                         body="Se ha ingresado un nuevo registro",
-                        icon= "/static/app/img/logo.jpg"
+                        icon= "/media/admin-interface/favicon/logo.jpg"
                     )
 
         messages.success(request, "Successful registration")
