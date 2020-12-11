@@ -88,13 +88,14 @@ def registro(request):
             formulario.save()                
             user = authenticate(username=formulario.cleaned_data["username"], password=formulario.cleaned_data["password1"])
             login(request, user)
-        #    if request.user.is_authenticated:
-        #        dispositivo = FCMDevice.is_superuser.all()
-        #        dispositivo.send_message(
-        #            title= "Nuevo Usuario Registrado",
-        #            body="Se ha ingresado un nuevo registro",
-        #            icon= "/static/app/img/logo.jpg"
-        #        )
+            if request.user.is_authenticated:
+                if user.is_superuser:
+                    dispositivo = FCMDevice.is_superuser.all()
+                    dispositivo.send_message(
+                        title= "Nuevo Usuario Registrado",
+                        body="Se ha ingresado un nuevo registro",
+                        icon= "/static/app/img/logo.jpg"
+                    )
 
         messages.success(request, "Successful registration")
         return redirect(to="index")
