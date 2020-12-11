@@ -84,10 +84,10 @@ def registro(request):
     if request.method == 'POST':
         formulario = CustomUserCreationForm(data=request.POST)
 
-        #if formulario.is_valid():
-        #    formulario.save()                
-        #    user = authenticate(username=formulario.cleaned_data["username"], password=formulario.cleaned_data["password1"])
-        #    login(request, user)
+        if formulario.is_valid():
+            formulario.save()                
+            user = authenticate(username=formulario.cleaned_data["username"], password=formulario.cleaned_data["password1"])
+            login(request, user)
         #    if request.user.is_authenticated:
         #        dispositivo = FCMDevice.is_superuser.all()
         #        dispositivo.send_message(
